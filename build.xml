@@ -3,7 +3,8 @@
               Any modifications will be overwritten.
               To include a user specific buildfile here, simply create one in the same
               directory with the processing instruction <?eclipse.ant.import?>
-              as the first entry and export the buildfile again. --><project basedir="." default="build" name="MVCPasswortManager">
+              as the first entry and export the buildfile again. -->
+<!--<project basedir="." default="build" name="MVCPasswortManager">
     <property environment="env"/>
     <property name="ECLIPSE_HOME" value="../../eclipse/"/>
     <property name="debuglevel" value="source,lines,vars"/>
@@ -63,4 +64,40 @@
             <classpath refid="MVCPasswortManager.classpath"/>
         </java>
     </target>
-</project>
+</project> -->
+<project name="MVCPasswortManager" default="build" basedir=".">
+  <!-- Sets variables which can later be used. -->
+  <!-- The value of a property is accessed via ${} -->
+  <property name="src.dir" location="src" />
+  <property name="lib.dir" location="lib" />
+  <property name="build.dir" location="bin" />
+
+  <!-- Create a classpath container which can be later used in the ant task -->
+  <path id="build.classpath">
+    <fileset dir="${lib.dir}">
+      <include name="**/*.jar" />
+    </fileset>
+  </path>
+
+  <!-- Deletes the existing build directory-->
+  <target name="clean">
+    <delete dir="${build.dir}" />
+  </target>
+
+  <!-- Creates the  build  directory-->
+  <target name="makedir">
+    <mkdir dir="${build.dir}" />
+  </target>
+
+  <!-- Compiles the java code -->
+  <target name="compile" depends="clean, makedir">
+    <javac srcdir="${src.dir}" destdir="${build.dir}" classpathref="build.classpath" />
+  </target>
+
+
+  <!-- Default build -->
+  <target name="build" depends="compile">
+    <description>Main target</description>
+  </target>
+
+</project> 
