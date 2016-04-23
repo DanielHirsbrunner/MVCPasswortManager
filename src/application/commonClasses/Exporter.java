@@ -71,7 +71,7 @@ public class Exporter {
 				//DialogHelper.ShowInformationDialog(stage, "Sicherung erstellt", "Die Datensicherung wurde erfolgreich erstellt");
 			} catch (Exception e) {
 				sl.getLogger().warning(e.toString() + " - " + e.getStackTrace().toString());
-				//DialogHelper.ShowWarningDialog(stage, "Fehler aufgetreten", "Die Datensicherung konnte nicht erstellt werden.\nPrüfen Sie die schreibberechtigung für das gewählte Verzeichnis");
+				//DialogHelper.ShowWarningDialog(stage, "Fehler aufgetreten", "Die Datensicherung konnte nicht erstellt werden.\nPruefen Sie die schreibberechtigung fuer das gewaehlte Verzeichnis");
 			}
         }
 	}
@@ -80,7 +80,8 @@ public class Exporter {
 	public static Password[] importFromXmlFile(Window stage) {
 		ServiceLocator sl = ServiceLocator.getServiceLocator();
 		FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Datensicherung auswählen");
+		
+        fileChooser.setTitle(sl.getTranslator().getString(LangText.ExporterChooseBackup));
         fileChooser.setInitialDirectory(
                 new File(System.getProperty("user.home"))
             );            
@@ -96,7 +97,7 @@ public class Exporter {
 				
 			} catch (Exception e) {
 				sl.getLogger().warning(e.toString() + " - " + e.getStackTrace().toString());
-				//DialogHelper.ShowWarningDialog(stage, "Fehler aufgetreten", "Die Datensicherung konnte nicht zurückgelesen werden.\nPrüfen Sie das Format der XML Datei");
+				//DialogHelper.ShowWarningDialog(stage, "Fehler aufgetreten", "Die Datensicherung konnte nicht zurueckgelesen werden.\nPruefen Sie das Format der XML Datei");
 			}
         }
         return new Password[0];

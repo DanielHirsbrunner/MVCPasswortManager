@@ -53,7 +53,7 @@ public class Configuration {
     private Properties localOptions;
 
     public Configuration() {
-    	// Appdata Pfad prüfen und falls noch nicht vorhanden Ordner anlegen (Default Pfad für DB)
+    	// Appdata Pfad pruefen und falls noch nicht vorhanden Ordner anlegen (Default Pfad fuer DB)
 		Path appDataDirectoryPath = Paths.get(System.getenv("APPDATA"), "EasyPasswortManager");
 		appDataDirectory = appDataDirectoryPath.toString();
 		File f = new File(appDataDirectory);

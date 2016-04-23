@@ -194,7 +194,7 @@ public class App_View extends View<App_Model> {
 		// ----------- Context menu -------------------
 		// --------------------------------------------
 		contextMenu = new ContextMenu();
-		// Adresse öffnen
+		// Adresse oeffnen
 		cmiOpenAdr = new MenuItem(this.translator.getString(LangText.ContextMenuOpenAdr));
 		cmiOpenAdr.setGraphic(new ImageView(new Image("img/openAdress.png")));
 		// Benutzername kopieren
@@ -203,7 +203,7 @@ public class App_View extends View<App_Model> {
 		// Passwort kopieren
 		cmiCopyPW = new MenuItem(this.translator.getString(LangText.ContextMenuCopyPassword));
 		cmiCopyPW.setGraphic(new ImageView(new Image("img/copy.png")));
-		// Eintrag Löschen
+		// Eintrag Loeschen
 		cmiDelete = new MenuItem(this.translator.getString(LangText.ContextMenuDeleteEntry));
 		cmiDelete.setGraphic(new ImageView(new Image("img/delete.png")));
 		// Eintrag Bearbeiten

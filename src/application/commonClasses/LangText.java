@@ -26,7 +26,8 @@ public enum LangText {
 	ContextMenuCopyUser("program.contextmenu.copyuser"),
 	ContextMenuCopyPassword("program.contextmenu.copypassword"),
 	ContextMenuDeleteEntry("program.contextmenu.delete"),
-	ContextMenuEditEntry("program.contextmenu.edit");
+	ContextMenuEditEntry("program.contextmenu.edit"),
+	ExporterChooseBackup("program.exporter.choosebackup");
 	
 	String resourceName;
 	
