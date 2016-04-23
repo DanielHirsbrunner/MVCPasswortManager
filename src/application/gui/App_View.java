@@ -156,7 +156,7 @@ public class App_View extends View<App_Model> {
 		// --------------------------------------------------------------------------------------------------------------------------------------
 		// ----------------- Sollten im Controller sein, aber dann funktionierts nicht, wiso weiss nur der java Gott ----------------------------
 		// --------------------------------------------------------------------------------------------------------------------------------------
-		// Falls eine andere Row ausgewählt wurde dem Model mitteilen
+		// Falls eine andere Row ausgewaehlt wurde dem Model mitteilen
 		this.table.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Password>() {
 			@Override
 			public void changed(ObservableValue<? extends Password> ov, Password oldPassword, Password newPassword) {
@@ -194,7 +194,7 @@ public class App_View extends View<App_Model> {
 		// ----------- Context menu -------------------
 		// --------------------------------------------
 		contextMenu = new ContextMenu();
-		// Adresse öffnen
+		// Adresse oeffnen
 		cmiOpenAdr = new MenuItem(this.translator.getString(LangText.ContextMenuOpenAdr));
 		cmiOpenAdr.setGraphic(new ImageView(new Image("img/openAdress.png")));
 		// Benutzername kopieren
@@ -203,7 +203,7 @@ public class App_View extends View<App_Model> {
 		// Passwort kopieren
 		cmiCopyPW = new MenuItem(this.translator.getString(LangText.ContextMenuCopyPassword));
 		cmiCopyPW.setGraphic(new ImageView(new Image("img/copy.png")));
-		// Eintrag Löschen
+		// Eintrag Loeschen
 		cmiDelete = new MenuItem(this.translator.getString(LangText.ContextMenuDeleteEntry));
 		cmiDelete.setGraphic(new ImageView(new Image("img/delete.png")));
 		// Eintrag Bearbeiten

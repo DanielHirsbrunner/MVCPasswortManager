@@ -96,7 +96,7 @@ public class App_Model extends Model {
 				this.serviceLocator.getLogger().warning(
 						e.toString() + " - " + e.getStackTrace().toString());
 				// DialogHelper.ShowWarningDialog(stage, "Fehler",
-				// "Unter dem folgenden Pfad konnten keine gültigen Daten gefunden werden.\nEs wird eine neue Passwort Datenbank angelegt.\nPfad:"
+				// "Unter dem folgenden Pfad konnten keine gueltigen Daten gefunden werden.\nEs wird eine neue Passwort Datenbank angelegt.\nPfad:"
 				// + xmlFile);
 			}
 		} else {

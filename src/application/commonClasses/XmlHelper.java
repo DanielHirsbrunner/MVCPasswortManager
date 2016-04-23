@@ -42,7 +42,7 @@ public class XmlHelper {
 		XMLEncoder encoder = new XMLEncoder(new BufferedOutputStream(stream));
 		encoder.writeObject(pws);
 		encoder.close();
-		// XML verschlüsseln
+		// XML verschluesseln
 		CipherOutputStream out;
 		Cipher cipher;
 		SecretKey key;
@@ -57,7 +57,7 @@ public class XmlHelper {
 
 	public static Password[] readEncrypted(String filename) throws Exception {
 		String password = ServiceLocator.getServiceLocator().getConfiguration().getOption(Option.DBEncryptionKey);
-		// Verschlüsseltes File lesen und in Memorystream laden
+		// Verschluesseltes File lesen und in Memorystream laden
 		CipherInputStream in;
 		ByteArrayOutputStream stream = new ByteArrayOutputStream();
 		Cipher cipher;
@@ -71,14 +71,14 @@ public class XmlHelper {
 		for (int n; (n = in.read(byteBuffer)) != -1; stream.write(byteBuffer, 0, n))
 			;
 		in.close();
-		// Entschlüsselter Steam deserialisieren
+		// Entschluesselter Steam deserialisieren
 		XMLDecoder decoder = new XMLDecoder(new BufferedInputStream(new ByteArrayInputStream(stream.toByteArray())));
 		Password[] o = (Password[]) decoder.readObject();
 		decoder.close();
 		return o;
 	}
 
-	// Methoden zum Verschlüsseln:
+	// Methoden zum Verschluesseln:
 	public void encryptFile(String originalFile, String encryptedFile) throws Exception {
 		String password = ServiceLocator.getServiceLocator().getConfiguration().getOption(Option.DBEncryptionKey);
 		CipherOutputStream out;

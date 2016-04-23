@@ -8,7 +8,7 @@
 
   <!-- Create a classpath container which can be later used in the ant task -->
   <path id="build.classpath">
-    <!-- Brauch ich später wenn mit externen liberies gearbeitet wird. 
+    <!-- Brauch ich spaeter wenn mit externen liberies gearbeitet wird. 
     <fileset dir="${lib.dir}">
       <include name="**/*.jar" />
     </fileset> -->

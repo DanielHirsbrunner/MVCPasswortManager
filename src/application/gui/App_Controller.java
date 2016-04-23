@@ -26,8 +26,8 @@ public class App_Controller extends Controller<App_Model, App_View> {
 		super(model, view);
 		this.serviceLocator = ServiceLocator.getServiceLocator();
 		
-		// Action Methoden für View hinzufügen
-		// Button: neues Passwort hinzufügen
+		// Action Methoden fuer View hinzufuegen
+		// Button: neues Passwort hinzufuegen
 		view.btnAdd.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
@@ -42,14 +42,14 @@ public class App_Controller extends Controller<App_Model, App_View> {
 
 			}
 		});
-		// Menu Datensicherung zurücklesen
+		// Menu Datensicherung zuruecklesen
 		view.menuFileRestore.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
 				restoreBackup(view.getStage());
 			}
 		});
-		// Menu Passwörter exportieren
+		// Menu Passwoerter exportieren
 		view.menuFileExport.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
@@ -86,14 +86,14 @@ public class App_Controller extends Controller<App_Model, App_View> {
 				copyUsernameToClipboard();
 			}
 		});
-		// Context Menu Eintrag löschen
+		// Context Menu Eintrag loeschen
 		view.cmiDelete.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
 				deletePassword();
 			}
 		});
-		// Context Menu URL öffnen
+		// Context Menu URL oeffnen
 		view.cmiOpenAdr.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
@@ -177,7 +177,7 @@ public class App_Controller extends Controller<App_Model, App_View> {
 				this.serviceLocator.getLogger().warning(
 						e.toString() + " - " + e.getStackTrace().toString());
 				// DialogHelper.ShowWarningDialog(primaryStage, "Fehler",
-				// "Es können nur korrekte Internetadressen geöffnet werden");
+				// "Es koennen nur korrekte Internetadressen geoeffnet werden");
 			}
 		}
 	}
