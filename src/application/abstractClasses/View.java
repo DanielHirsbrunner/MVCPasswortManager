@@ -18,8 +18,8 @@ public abstract class View<M> {
     /**
      * Set any options for the stage in the subclass constructor
      * 
-     * @param stage
-     * @param model
+     * @param stage Stage Objekt in welchem die Scene dargestellt werden soll
+     * @param model Datenmodel
      */
     protected View(Stage stage, M model) {
         this.stage = stage;
@@ -50,6 +50,7 @@ public abstract class View<M> {
     
     /**
      * Getter for the stage, so that the controller can access window events
+     * @return aktives Stage Objekt
      */
     public Stage getStage() {
         return stage;

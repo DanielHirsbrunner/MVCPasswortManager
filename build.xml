@@ -5,6 +5,7 @@
   <property name="src.dir" location="src" />
   <property name="lib.dir" location="lib" />
   <property name="build.dir" location="bin" />
+  <property name="docs.dir" location="docs" />
 
   <!-- Create a classpath container which can be later used in the ant task -->
   <path id="build.classpath">
@@ -17,11 +18,13 @@
   <!-- Deletes the existing build directory-->
   <target name="clean">
     <delete dir="${build.dir}" />
+    <delete dir="${docs.dir}" />
   </target>
 
   <!-- Creates the  build  directory-->
   <target name="makedir">
     <mkdir dir="${build.dir}" />
+    <mkdir dir="${docs.dir}" />
   </target>
 
   <!-- Compiles the java code -->
@@ -29,9 +32,18 @@
     <javac srcdir="${src.dir}" destdir="${build.dir}" classpathref="build.classpath" />
   </target>
 
+  <!-- Creates Javadoc -->
+  <target name="docs" depends="compile">
+    <javadoc  encoding="UTF-8" charset="UTF-8" docencoding="UTF-8" packagenames="src" sourcepath="${src.dir}" destdir="${docs.dir}">
+      <!-- Define which files / directory should get included, we include all -->
+       <fileset dir="${src.dir}">
+           <include name="**/*.java" />
+       </fileset>
+    </javadoc>
+  </target>
 
   <!-- Default build -->
-  <target name="build" depends="compile">
+  <target name="build" depends="compile, docs">
     <description>Main target</description>
   </target>
 

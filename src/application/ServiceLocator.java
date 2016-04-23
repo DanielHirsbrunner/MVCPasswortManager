@@ -35,7 +35,6 @@ public class ServiceLocator {
 
     /**
      * Factory method for returning the singleton
-     * @param mainClass The main class of this program
      * @return The singleton resource locator
      */
     public static ServiceLocator getServiceLocator() {

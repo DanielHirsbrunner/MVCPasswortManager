@@ -8,26 +8,6 @@ import java.util.logging.Logger;
 import application.ServiceLocator;
 
 public class Translator {
-	
-	/*public final String NAME = "program.name";
-	public final String TITLE = "program.title";
-	public final String MENU_FILE = "program.menu.file";
-	public final String MENU_FILE_BACKUP = "program.menu.file.backup";
-	public final String MENU_FILE_RESTORE = "program.menu.file.restore";
-	public final String MENU_FILE_EXPORT = "program.menu.file.export";
-	public final String MENU_FILE_EXIT = "program.menu.file.exit";
-	public final String MENU_LANGUAGE = "program.menu.language";
-	public final String MENU_HELP = "program.menu.help";
-	public final String MENU_HELP_ABOUT = "program.menu.help.about";
-	public final String TABLE_COL_ADRESS = "program.table.colAdress";
-	public final String TABLE_COL_USERNAME = "program.table.colUserName";
-	public final String TABLE_COL_REMARKS = "program.table.colRemark";
-	public final String TABLE_COL_PASSWORD = "program.table.colPassword";
-	public final String BUTTON_ADD = "program.btnAdd";
-	public final String CONTEXTMENU_OPENADR = "program.contextmenu.openadr";
-	public final String CONTEXTMENU_COPYUSERNAME = "program.contextmenu.copyuser";
-	public final String CONTEXTMENU_COPYPASSWORD = "program.contextmenu.copypassword";
-	public final String CONTEXTMENU_DELETEENTRY = "program.contextmenu.delete";*/
 
 	private ServiceLocator sl = ServiceLocator.getServiceLocator();
 	private Logger logger = sl.getLogger();
@@ -61,6 +41,7 @@ public class Translator {
 
 	/**
 	 * Return the current locale; this is useful for formatters, etc.
+	 * @return aktives Locale
 	 */
 	public Locale getCurrentLocale() {
 		return currentLocale;
@@ -68,6 +49,8 @@ public class Translator {
 
 	/**
 	 * Public method to get string resources, default to "--" *
+	 * @param text Enum eintrag für die Sprachkonstante
+	 * @return Sprachtext für das aktuelle Locale
 	 */
 	public String getString(LangText text) {
 		try {
