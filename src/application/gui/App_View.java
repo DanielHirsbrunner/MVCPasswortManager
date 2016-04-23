@@ -156,7 +156,7 @@ public class App_View extends View<App_Model> {
 		// --------------------------------------------------------------------------------------------------------------------------------------
 		// ----------------- Sollten im Controller sein, aber dann funktionierts nicht, wiso weiss nur der java Gott ----------------------------
 		// --------------------------------------------------------------------------------------------------------------------------------------
-		// Falls eine andere Row ausgewaehlt wurde dem Model mitteilen
+		// Falls eine andere Row ausgewaehlt wurde dem Model mitteilen 
 		this.table.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Password>() {
 			@Override
 			public void changed(ObservableValue<? extends Password> ov, Password oldPassword, Password newPassword) {
