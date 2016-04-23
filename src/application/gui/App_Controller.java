@@ -31,7 +31,7 @@ public class App_Controller extends Controller<App_Model, App_View> {
 		view.btnAdd.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				addPassword();
+				savePassword();
 			}
 		});
 		// Menu Datensicherung erstellen
@@ -86,13 +86,11 @@ public class App_Controller extends Controller<App_Model, App_View> {
 				copyUsernameToClipboard();
 			}
 		});
-		// Context Menu eintrag löschen
+		// Context Menu Eintrag löschen
 		view.cmiDelete.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				if (model.GetCurrentPw() != null) {
-					model.GetPasswords().remove(model.GetCurrentPw());
-				}
+				deletePassword();
 			}
 		});
 		// Context Menu URL öffnen
@@ -102,24 +100,41 @@ public class App_Controller extends Controller<App_Model, App_View> {
 				openCurrentUrl();
 			}
 		});
+		// Context Menu Benutzername kopieren
+		view.cmiEdit.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				editPassword();
+			}
+		});
 
 		serviceLocator.getLogger().info("Application controller initialized");
 	}
 
-	public void addPassword() {
-		Password pw = new Password();
+	public void savePassword() {
+		Password pw;
+		boolean isNew = false;
+		if (this.model.GetIsInEdit()) {
+			this.model.SetIsInEdit(false);
+			pw = this.model.GetCurrentPw();
+		} else {
+			isNew = true;
+			pw = new Password();
+		}
 		pw.setAdresse(view.txtAdress.getText());
 		pw.setBenutzername(view.txtUserName.getText());
 		pw.setPasswort(view.txtPassword.getText());
 		pw.setBemerkung(view.txtRemark.getText());
-		this.model.AddPassword(pw);
-		view.txtAdress.clear();
-		view.txtUserName.clear();
-		view.txtPassword.clear();
-		view.txtRemark.clear();
-		view.txtAdress.requestFocus();
+		
+		if (isNew) {
+			this.model.AddPassword(pw);
+		} else {
+			this.model.GetPasswords().set(this.model.GetPasswords().indexOf(pw), pw);
+		}
+		view.clearFields();
+		view.setDefaultFocus();		
 	}
-
+	
 	private void createBackup(Stage stage) {
 		Exporter.exportToXmlFile(stage, this.model.GetPasswordArrayForExport());
 	}
@@ -136,28 +151,28 @@ public class App_Controller extends Controller<App_Model, App_View> {
 	}
 
 	private void copyPasswordToClipboard() {
-		if (model.GetCurrentPw() != null) {
+		if (this.model.GetCurrentPw() != null) {
 			final Clipboard clipboard = Clipboard.getSystemClipboard();
 			final ClipboardContent content = new ClipboardContent();
-			content.putString(model.GetCurrentPw().getPasswort());
+			content.putString(this.model.GetCurrentPw().getPasswort());
 			clipboard.setContent(content);
 		}
 	}
 
 	private void copyUsernameToClipboard() {
-		if (model.GetCurrentPw() != null) {
+		if (this.model.GetCurrentPw() != null) {
 			final Clipboard clipboard = Clipboard.getSystemClipboard();
 			final ClipboardContent content = new ClipboardContent();
-			content.putString(model.GetCurrentPw().getBenutzername());
+			content.putString(this.model.GetCurrentPw().getBenutzername());
 			clipboard.setContent(content);
 		}
 	}
 
 	private void openCurrentUrl() {
-		if (model.GetCurrentPw() != null) {
+		if (this.model.GetCurrentPw() != null) {
 			try {
 				Desktop.getDesktop().browse(
-						new URI(model.GetCurrentPw().getAdresse()));
+						new URI(this.model.GetCurrentPw().getAdresse()));
 			} catch (Exception e) {
 				this.serviceLocator.getLogger().warning(
 						e.toString() + " - " + e.getStackTrace().toString());
@@ -166,4 +181,28 @@ public class App_Controller extends Controller<App_Model, App_View> {
 			}
 		}
 	}
+	
+	private void deletePassword() {
+		if (this.model.GetCurrentPw() != null) {
+			this.model.GetPasswords().remove(model.GetCurrentPw());
+		}
+	}
+	
+	private void editPassword() {
+		if (this.model.GetCurrentPw() != null) {
+			this.model.SetIsInEdit(true);
+			this.view.txtAdress.setText(model.GetCurrentPw().getAdresse());
+			this.view.txtUserName.setText(model.GetCurrentPw().getBenutzername());
+			this.view.txtPassword.setText(model.GetCurrentPw().getPasswort());
+			this.view.txtRemark.setText(model.GetCurrentPw().getBemerkung());
+			this.view.setDefaultFocus();
+		}
+	}
+
+	private void chancelEdit() {
+		this.model.SetIsInEdit(false);
+		this.view.clearFields();
+		this.view.setDefaultFocus();
+	}
+
 }

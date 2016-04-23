@@ -18,6 +18,7 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -46,6 +47,7 @@ public class App_View extends View<App_Model> {
 	MenuItem cmiCopyUser;
 	MenuItem cmiCopyPW;
 	MenuItem cmiDelete;
+	MenuItem cmiEdit;
 
 	Label lblTitel;
 
@@ -151,13 +153,41 @@ public class App_View extends View<App_Model> {
 		this.colRemark.setCellValueFactory(new PropertyValueFactory<Password, String>("bemerkung"));
 		this.colRemark.prefWidthProperty().bind(table.widthProperty().divide(3));
 
+		// --------------------------------------------------------------------------------------------------------------------------------------
+		// ----------------- Sollten im Controller sein, aber dann funktionierts nicht, wiso weiss nur der java Gott ----------------------------
+		// --------------------------------------------------------------------------------------------------------------------------------------
+		// Falls eine andere Row ausgewählt wurde dem Model mitteilen
 		this.table.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Password>() {
 			@Override
 			public void changed(ObservableValue<? extends Password> ov, Password oldPassword, Password newPassword) {
 				model.SetCurrentPw(newPassword);
+				// chancelEdit Methode
+				clearFields();
 			}
 		});
-
+		// Doppelklick auf Auflistung -> Eintrag editieren
+		this.table.setRowFactory( tv -> {
+		    TableRow<Password> row = new TableRow<>();
+		    row.setOnMouseClicked(event -> {
+		        if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+		        	
+		        	// editPassword Methode
+		        		if (this.model.GetCurrentPw() != null) {
+		                    this.model.SetIsInEdit(true);
+		        			this.txtAdress.setText(model.GetCurrentPw().getAdresse());
+		        			this.txtUserName.setText(model.GetCurrentPw().getBenutzername());
+		        			this.txtPassword.setText(model.GetCurrentPw().getPasswort());
+		        			this.txtRemark.setText(model.GetCurrentPw().getBemerkung());
+		        			this.setDefaultFocus();
+		        		}
+		        }
+		    });
+		    return row ;
+		});
+		// ---------------------------------------------------------------------------------------------------------------------------------------
+		// ---------------------------------------------------------------------------------------------------------------------------------------
+		// ---------------------------------------------------------------------------------------------------------------------------------------
+		
 		this.table.getColumns().addAll(this.colAdress, this.colUserName, this.colPassword, this.colRemark);
 
 		// --------------------------------------------
@@ -176,7 +206,10 @@ public class App_View extends View<App_Model> {
 		// Eintrag Löschen
 		cmiDelete = new MenuItem(this.translator.getString(LangText.ContextMenuDeleteEntry));
 		cmiDelete.setGraphic(new ImageView(new Image("img/delete.png")));
-		contextMenu.getItems().addAll(cmiOpenAdr, cmiCopyUser, cmiCopyPW, cmiDelete);
+		// Eintrag Bearbeiten
+		cmiEdit = new MenuItem(this.translator.getString(LangText.ContextMenuEditEntry));
+		cmiEdit.setGraphic(new ImageView(new Image("img/edit.png")));
+		contextMenu.getItems().addAll(cmiOpenAdr, cmiCopyUser, cmiCopyPW, cmiEdit, cmiDelete);
 		table.setContextMenu(contextMenu);
 
 		table.setItems(this.model.GetPasswords());
@@ -250,5 +283,16 @@ public class App_View extends View<App_Model> {
 		this.txtPassword.setPromptText(this.translator.getString(LangText.TableColPassword));
 		this.txtRemark.setPromptText(this.translator.getString(LangText.TableColRemark));
 		this.btnAdd.setText(this.translator.getString(LangText.ButtonAdd));
+	}
+	
+	protected void clearFields() {
+		this.txtAdress.clear();
+		this.txtUserName.clear();
+		this.txtPassword.clear();
+		this.txtRemark.clear();
+	}
+	
+	protected void setDefaultFocus() {
+		this.txtAdress.requestFocus();
 	}
 }

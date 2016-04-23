@@ -21,10 +21,12 @@ public enum LangText {
 	TableColRemark("program.table.colRemark"),
 	TableColPassword("program.table.colPassword"),
 	ButtonAdd("program.btnAdd"),
+	ButtonAddSave("program.btnAdd.save"),
 	ContextMenuOpenAdr("program.contextmenu.openadr"),
 	ContextMenuCopyUser("program.contextmenu.copyuser"),
 	ContextMenuCopyPassword("program.contextmenu.copypassword"),
-	ContextMenuDeleteEntry("program.contextmenu.delete");
+	ContextMenuDeleteEntry("program.contextmenu.delete"),
+	ContextMenuEditEntry("program.contextmenu.edit");
 	
 	String resourceName;
 	

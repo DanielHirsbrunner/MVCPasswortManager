@@ -16,6 +16,7 @@ import application.ServiceLocator;
 public class App_Model extends Model {
     private ServiceLocator serviceLocator;
 	private Password currentPw;
+	private boolean isInEdit = false;
 
 	private ObservableList<Password> passwords = FXCollections.observableArrayList();
     
@@ -49,6 +50,14 @@ public class App_Model extends Model {
 
 	public void SetCurrentPw(Password newPassword) {
 		this.currentPw = newPassword;
+	}
+	
+	public boolean GetIsInEdit() {
+		return this.isInEdit;
+	}
+
+	public void SetIsInEdit(boolean inEdit) {
+		this.isInEdit = inEdit;
 	}
 	
 	public boolean AddPassword(Password pw) {
