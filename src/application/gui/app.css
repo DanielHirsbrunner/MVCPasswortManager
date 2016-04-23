@@ -1,0 +1,26 @@
+.label {
+  -fx-font-size: 12px;
+  -fx-font-weight: bold;
+  -fx-font-style: italic;
+  -fx-text-fill: #008080;
+}
+
+.titelLabel {
+  -fx-font-size: 20px;
+  -fx-font-weight: bold;
+  -fx-text-fill: #008080;
+  -fx-border-width:5px;
+  -fx-border-color: transparent;
+}
+.button {
+  -fx-font-size: 12px;
+  -fx-font-style: italic;
+  -fx-text-fill: #000000;
+}
+
+.menu .label {
+  -fx-font-size: 12px;
+  -fx-font-weight: bold;
+  -fx-text-fill: #000000;
+  -fx-border-width: 0px;
+}
