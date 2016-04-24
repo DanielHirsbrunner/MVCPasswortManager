@@ -4,6 +4,7 @@ import java.util.Locale;
 import java.util.logging.Logger;
 
 import application.abstractClasses.View;
+import application.commonClasses.Configuration.Option;
 import application.commonClasses.LangText;
 import application.commonClasses.Password;
 import application.commonClasses.Translator;
@@ -113,6 +114,9 @@ public class App_View extends View<App_Model> {
 			MenuItem language = new MenuItem(locale.getLanguage());
 			this.menuLanguage.getItems().add(language);
 			language.setOnAction(event -> {
+				// Einstellung sichern
+				this.sl.getConfiguration().setLocalOption(Option.Language, locale.getLanguage());
+				// Translater setzen
 				sl.setTranslator(new Translator(locale.getLanguage()));
 				translator = sl.getTranslator();
 				updateTexts();
