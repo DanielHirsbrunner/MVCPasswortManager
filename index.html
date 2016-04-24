@@ -6,9 +6,42 @@
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <meta name="description" content="MVC Beispiel: Dani&#39;s easy Passwort Manager : Java Passwort Manager mit MVC Template">
 
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
     <title>MVC Beispiel: Dani&#39;s easy Passwort Manager</title>
+	<!-- javascript für Menu Eintraege -->
+    <script> 
+    function SwitchPage(page){
+		$("#content").load("views/"+page+".html"); 
+    };
+	</script>
+	<!-- css ergaenzungen für selbsthinzugefuegtes -->
+	<style>
+		#menu {
+			width:260px;
+			position:absolute;
+			margin-right:20px;
+		}
+		.menuButton {
+			background-color:white;
+			border-radius:28px;
+			border:1px solid black;
+			cursor:pointer;
+			color:black;
+			padding:5px 10px;
+			text-decoration:none;
+			width:30%;
+			text-shadow:0px 1px 0px rgb(144, 144, 144);
+			margin-bottom:10px;
+		}
+		.menuButton:hover {
+			background-color:GrayText;
+		}
+		.menuButton:active {
+			position:relative;
+			top:1px;
+		}
+	</style>
   </head>
 
   <body>
@@ -20,7 +53,16 @@
 
           <h1 id="project_title">MVC Beispiel: Dani&#39;s easy Passwort Manager</h1>
           <h2 id="project_tagline">Java Passwort Manager mit MVC Template</h2>
-
+			<!-- Menu -->
+            <section id="menu">
+				<input type="button" class="menuButton" value="Start" name="start"
+				onclick="SwitchPage('start')">
+				<input type="button" class="menuButton" value="Anleitung" name="manual" 
+				onclick="SwitchPage('manual')">
+				<input type="button" class="menuButton" value="Javadoc" name="doc" 
+				onclick="window.location='docs/';">
+            </section>
+			<!-- Downloads -->
             <section id="downloads">
               <a class="zip_download_link" href="https://github.com/DanielHirsbrunner/MVCPasswortManager/zipball/master">Download this project as a .zip file</a>
               <a class="tar_download_link" href="https://github.com/DanielHirsbrunner/MVCPasswortManager/tarball/master">Download this project as a tar.gz file</a>
@@ -29,41 +71,19 @@
     </div>
 
     <!-- MAIN CONTENT -->
+	<div id="main_content_wrap">
+	<section id="main_content" class="inner">
+		<div id="content">
+		<script>
+		SwitchPage('start')
+		</script>
+		</div>
+	</section>
+	</div>
+	
     <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h3>
-<a id="mvc-passwort-manager" class="anchor" href="#mvc-passwort-manager" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>MVC Passwort Manager</h3>
-
-<p>Der MVC Passwort Manager ist eine Java FX Anwendung, welche ich im Rahmen des Software Engineering 2 Kurses als Beispielanwendung für das MVC Pattern erstellt habe.</p>
-
-<p>Als Vorlage diente das  Application Framework aus der Vorlesung von Prof. Dr. Brad Richards, sowie mein eigener, vor längerer Zeit erstellter, Passwort Manager.</p>
-
-<h3>
-<a id="ziele" class="anchor" href="#ziele" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Ziele</h3>
-
-<p>Mit der Anwendung MVC Passwort Managers wurden mehrere Ziele verfolgt:</p>
-
-<ul>
-<li>das Application Framework von  Prof. Dr. Brad Richards kennen zulernen</li>
-<li>den im Unterricht behandelten Stoff zu repetieren</li>
-<li>Erfahrungen für das IT Projekt sammeln</li>
-<li>Bonuspunkte für die Abschlusprüfung erhalten</li>
-</ul>
-
-<h3>
-<a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<ul>
-<li>Prof. Dr. Brad Richards für das zugrunde liegende Framework</li>
-<li>Daniel Hirsbrunner zur Implementierung des Passwort Managers</li>
-</ul>
-
-<h3>
-<a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out our <a href="https://help.github.com/pages">documentation</a> or <a href="https://github.com/contact">contact support</a> and we’ll help you sort it out.</p>
-      </section>
-    </div>
+     
+	</div>
 
     <!-- FOOTER  -->
     <div id="footer_wrap" class="outer">
