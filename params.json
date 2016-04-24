@@ -1,0 +1,6 @@
+{
+  "name": "MVC Beispiel: Dani's easy Passwort Manager",
+  "tagline": "Java Passwort Manager mit MVC Template",
+  "body": "### MVC Passwort Manager\r\n\r\nDer MVC Passwort Manager ist eine Java FX Anwendung, welche ich im Rahmen des Software Engineering 2 Kurses als Beispielanwendung für das MVC Pattern erstellt habe.\r\n\r\nAls Vorlage diente das  Application Framework aus der Vorlesung von Prof. Dr. Brad Richards, sowie mein eigener, vor längerer Zeit erstellter, Passwort Manager.\r\n\r\n### Ziele\r\nMit der Anwendung MVC Passwort Managers wurden mehrere Ziele verfolgt:\r\n* das Application Framework von  Prof. Dr. Brad Richards kennen zulernen\r\n* den im Unterricht behandelten Stoff zu repetieren\r\n* Erfahrungen für das IT Projekt sammeln\r\n* Bonuspunkte für die Abschlusprüfung erhalten\r\n\r\n### Authors and Contributors\r\n* Prof. Dr. Brad Richards für das zugrunde liegende Framework\r\n* Daniel Hirsbrunner zur Implementierung des Passwort Managers\r\n\r\n### Support or Contact\r\nHaving trouble with Pages? Check out our [documentation](https://help.github.com/pages) or [contact support](https://github.com/contact) and we’ll help you sort it out.\r\n",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
