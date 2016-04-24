@@ -10,9 +10,20 @@ import java.util.Date;
 import application.ServiceLocator;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
-
+/**
+ * Der Exporter ist eine Hilfklasse welche ein CSV export sowie ein XML Import / Export zur verfügung stellt.
+ * Der XML Export wird zum erstellen der nicht verschlüsselten Datensicherung verwendet. 
+ *  
+ * @author Daniel
+ *
+ */
 public class Exporter {
-	
+	/**
+	 * CSV Export im Format:
+	 * | Adresse | Benutzername | Passwort | Bemerkung |
+	 * @param stage Stage als Owner für den File Chooser
+	 * @param pws zu exportierende Passwörter
+	 */
 	public static void exportToCsvFile(Window stage, Password[] pws) {
 		ServiceLocator sl = ServiceLocator.getServiceLocator();
 		String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
@@ -55,7 +66,12 @@ public class Exporter {
 			}
         }
 	}
-
+	
+	/**
+	 *  XML Export zum erstellen der Datensicherung
+	 * @param stage aktueller Owner für den FileChooser
+	 * @param pws zu Exportierende Passwörter
+	 */
 	public static void exportToXmlFile(Window stage, Password[] pws) {
 		ServiceLocator sl = ServiceLocator.getServiceLocator();
 		String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
@@ -76,7 +92,12 @@ public class Exporter {
         }
 	}
 	
-
+	/**
+	 *  XML Import um Datensicherungen zurück zu lesen
+	 *  
+	 * @param stage aktueller Owner für den FileChooser
+	 * @return Array mit den eingelessenen Passwörter
+	 */
 	public static Password[] importFromXmlFile(Window stage) {
 		ServiceLocator sl = ServiceLocator.getServiceLocator();
 		FileChooser fileChooser = new FileChooser();

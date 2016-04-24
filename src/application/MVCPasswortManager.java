@@ -15,6 +15,11 @@ import javafx.stage.Stage;
  * is licensed under the terms of the BSD 3-clause license (see the file
  * license.txt).
  * 
+ * Einsteigepunkt der Anwendung:
+ *  - startet den Splash-Screen
+ *  - initialisiert die benötigten Objekte
+ *  - ladet benötigte Resourcen
+ *  - Startet das Main GUI
  * @author Brad Richards
  */
 public class MVCPasswortManager extends Application {

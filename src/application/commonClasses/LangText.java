@@ -2,6 +2,8 @@ package application.commonClasses;
 
 /**
  * Enumeration mit den Sprachresourcen
+ * Um nicht überall die Schreibfehler anfälligen Einstellungs konstanten verwenden zu müssen, wurde diese Enumeratione eingefügt.
+ * Sie dient als Verzeich sämtlicher im Programm vorhanden Sprachtexte
  * 
  * @author Daniel
  */

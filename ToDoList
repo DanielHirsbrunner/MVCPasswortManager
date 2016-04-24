@@ -1,0 +1,6 @@
+- Unit Tests
+- Event Listener für View in Controller moven. Sobald ich weiss wies funktioniert...
+- Interaktion mit User bei Fehlern (ehemals DialogHelper.Show...Dialog)
+- Hilfe / About Dialog
+- Einstellungs Dialog für Settings im Config File
+- Script das Javadoc nach Travis Build automatisch in GitHub Pages gepushed wird 

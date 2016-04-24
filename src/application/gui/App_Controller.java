@@ -16,6 +16,8 @@ import application.commonClasses.Exporter;
 import application.commonClasses.Password;
 
 /**
+ * Der App Controller ist für die Steuerung der Hauptview zuständig und koordiniert die einzelnen Befehle
+ * Er verwaltet die verschiedenen Eventmethoden und Listener und handelt die Callbacks
  * 
  * @author Daniel Hirsbrunner
  */
@@ -68,7 +70,7 @@ public class App_Controller extends Controller<App_Model, App_View> {
 			@Override
 			public void handle(WindowEvent event) {
 				// beim schliessen die Daten speichern
-				model.SavePasswords();
+				model.savePasswords();
 				Platform.exit();
 			}
 		});
@@ -111,12 +113,12 @@ public class App_Controller extends Controller<App_Model, App_View> {
 		serviceLocator.getLogger().info("Application controller initialized");
 	}
 
-	public void savePassword() {
+	private void savePassword() {
 		Password pw;
 		boolean isNew = false;
 		if (this.model.GetIsInEdit()) {
-			this.model.SetIsInEdit(false);
-			pw = this.model.GetCurrentPw();
+			this.model.setIsInEdit(false);
+			pw = this.model.getCurrentPw();
 		} else {
 			isNew = true;
 			pw = new Password();
@@ -127,52 +129,52 @@ public class App_Controller extends Controller<App_Model, App_View> {
 		pw.setBemerkung(view.txtRemark.getText());
 		
 		if (isNew) {
-			this.model.AddPassword(pw);
+			this.model.addPassword(pw);
 		} else {
-			this.model.GetPasswords().set(this.model.GetPasswords().indexOf(pw), pw);
+			this.model.getPasswords().set(this.model.getPasswords().indexOf(pw), pw);
 		}
 		view.clearFields();
 		view.setDefaultFocus();		
 	}
 	
 	private void createBackup(Stage stage) {
-		Exporter.exportToXmlFile(stage, this.model.GetPasswordArrayForExport());
+		Exporter.exportToXmlFile(stage, this.model.getPasswordArrayForExport());
 	}
 
 	private void createCsvFile(Stage stage) {
-		Exporter.exportToCsvFile(stage, this.model.GetPasswordArrayForExport());
+		Exporter.exportToCsvFile(stage, this.model.getPasswordArrayForExport());
 	}
 
 	private void restoreBackup(Stage stage) {
 		Password[] newData = Exporter.importFromXmlFile(stage);
 		for (Password pw : newData) {
-			this.model.AddPassword(pw);
+			this.model.addPassword(pw);
 		}
 	}
 
 	private void copyPasswordToClipboard() {
-		if (this.model.GetCurrentPw() != null) {
+		if (this.model.getCurrentPw() != null) {
 			final Clipboard clipboard = Clipboard.getSystemClipboard();
 			final ClipboardContent content = new ClipboardContent();
-			content.putString(this.model.GetCurrentPw().getPasswort());
+			content.putString(this.model.getCurrentPw().getPasswort());
 			clipboard.setContent(content);
 		}
 	}
 
 	private void copyUsernameToClipboard() {
-		if (this.model.GetCurrentPw() != null) {
+		if (this.model.getCurrentPw() != null) {
 			final Clipboard clipboard = Clipboard.getSystemClipboard();
 			final ClipboardContent content = new ClipboardContent();
-			content.putString(this.model.GetCurrentPw().getBenutzername());
+			content.putString(this.model.getCurrentPw().getBenutzername());
 			clipboard.setContent(content);
 		}
 	}
 
 	private void openCurrentUrl() {
-		if (this.model.GetCurrentPw() != null) {
+		if (this.model.getCurrentPw() != null) {
 			try {
 				Desktop.getDesktop().browse(
-						new URI(this.model.GetCurrentPw().getAdresse()));
+						new URI(this.model.getCurrentPw().getAdresse()));
 			} catch (Exception e) {
 				this.serviceLocator.getLogger().warning(
 						e.toString() + " - " + e.getStackTrace().toString());
@@ -183,24 +185,24 @@ public class App_Controller extends Controller<App_Model, App_View> {
 	}
 	
 	private void deletePassword() {
-		if (this.model.GetCurrentPw() != null) {
-			this.model.GetPasswords().remove(model.GetCurrentPw());
+		if (this.model.getCurrentPw() != null) {
+			this.model.getPasswords().remove(model.getCurrentPw());
 		}
 	}
 	
 	private void editPassword() {
-		if (this.model.GetCurrentPw() != null) {
-			this.model.SetIsInEdit(true);
-			this.view.txtAdress.setText(model.GetCurrentPw().getAdresse());
-			this.view.txtUserName.setText(model.GetCurrentPw().getBenutzername());
-			this.view.txtPassword.setText(model.GetCurrentPw().getPasswort());
-			this.view.txtRemark.setText(model.GetCurrentPw().getBemerkung());
+		if (this.model.getCurrentPw() != null) {
+			this.model.setIsInEdit(true);
+			this.view.txtAdress.setText(model.getCurrentPw().getAdresse());
+			this.view.txtUserName.setText(model.getCurrentPw().getBenutzername());
+			this.view.txtPassword.setText(model.getCurrentPw().getPasswort());
+			this.view.txtRemark.setText(model.getCurrentPw().getBemerkung());
 			this.view.setDefaultFocus();
 		}
 	}
 
 	private void chancelEdit() {
-		this.model.SetIsInEdit(false);
+		this.model.setIsInEdit(false);
 		this.view.clearFields();
 		this.view.setDefaultFocus();
 	}

@@ -2,7 +2,12 @@ package application.commonClasses;
 
 import javafx.beans.property.SimpleStringProperty;
 
-
+/**
+ * Die Klasse Password ist das zentrale Business Objekt des Passwort Managers.
+ * Sie Cached die Daten zur Laufzeit und bietet Getter und Setter zu den Werten des einzelnen Eintrages
+ * 
+ * @author Daniel
+ */
 public class Password  {
 
 	public static final String DEFAULT_FAKE_PASSWORD = "******";

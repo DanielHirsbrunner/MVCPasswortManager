@@ -30,6 +30,9 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
+ * 
+ * Gui für die Userinteraktion
+ * 
  * @author Daniel Hirsbrunner
  */
 public class App_View extends View<App_Model> {
@@ -160,7 +163,7 @@ public class App_View extends View<App_Model> {
 		this.table.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Password>() {
 			@Override
 			public void changed(ObservableValue<? extends Password> ov, Password oldPassword, Password newPassword) {
-				model.SetCurrentPw(newPassword);
+				model.setCurrentPw(newPassword);
 				// chancelEdit Methode
 				clearFields();
 			}
@@ -172,12 +175,12 @@ public class App_View extends View<App_Model> {
 		        if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
 		        	
 		        	// editPassword Methode
-		        		if (this.model.GetCurrentPw() != null) {
-		                    this.model.SetIsInEdit(true);
-		        			this.txtAdress.setText(model.GetCurrentPw().getAdresse());
-		        			this.txtUserName.setText(model.GetCurrentPw().getBenutzername());
-		        			this.txtPassword.setText(model.GetCurrentPw().getPasswort());
-		        			this.txtRemark.setText(model.GetCurrentPw().getBemerkung());
+		        		if (this.model.getCurrentPw() != null) {
+		                    this.model.setIsInEdit(true);
+		        			this.txtAdress.setText(model.getCurrentPw().getAdresse());
+		        			this.txtUserName.setText(model.getCurrentPw().getBenutzername());
+		        			this.txtPassword.setText(model.getCurrentPw().getPasswort());
+		        			this.txtRemark.setText(model.getCurrentPw().getBemerkung());
 		        			this.setDefaultFocus();
 		        		}
 		        }
@@ -212,7 +215,7 @@ public class App_View extends View<App_Model> {
 		contextMenu.getItems().addAll(cmiOpenAdr, cmiCopyUser, cmiCopyPW, cmiEdit, cmiDelete);
 		table.setContextMenu(contextMenu);
 
-		table.setItems(this.model.GetPasswords());
+		table.setItems(this.model.getPasswords());
 
 		// ---------------------------------------------------
 		// ----------- Eingabe Felder ------------------------
@@ -266,10 +269,11 @@ public class App_View extends View<App_Model> {
 		this.menuFileExit.setText(this.translator.getString(LangText.MenuFileExit));
 
 		// Context Menu
-		cmiOpenAdr.setText(this.translator.getString(LangText.ContextMenuOpenAdr));
-		cmiCopyUser.setText(this.translator.getString(LangText.ContextMenuCopyUser));
-		cmiCopyPW.setText(this.translator.getString(LangText.ContextMenuCopyPassword));
-		cmiDelete.setText(this.translator.getString(LangText.ContextMenuDeleteEntry));
+		this.cmiOpenAdr.setText(this.translator.getString(LangText.ContextMenuOpenAdr));
+		this.cmiCopyUser.setText(this.translator.getString(LangText.ContextMenuCopyUser));
+		this.cmiCopyPW.setText(this.translator.getString(LangText.ContextMenuCopyPassword));
+		this.cmiDelete.setText(this.translator.getString(LangText.ContextMenuDeleteEntry));
+		this.cmiEdit.setText(this.translator.getString(LangText.ContextMenuEditEntry));
 
 		// Table
 		this.colAdress.setText(this.translator.getString(LangText.TableColAdress));
@@ -284,14 +288,18 @@ public class App_View extends View<App_Model> {
 		this.txtRemark.setPromptText(this.translator.getString(LangText.TableColRemark));
 		this.btnAdd.setText(this.translator.getString(LangText.ButtonAdd));
 	}
-	
+	/**
+	 * Leert alle Anzeige Felder des aktuellen Passwortes
+	 */
 	protected void clearFields() {
 		this.txtAdress.clear();
 		this.txtUserName.clear();
 		this.txtPassword.clear();
 		this.txtRemark.clear();
 	}
-	
+	/**
+	 * setzt den standard Fokus für neuerfassen oder editieren
+	 */
 	protected void setDefaultFocus() {
 		this.txtAdress.requestFocus();
 	}

@@ -7,6 +7,12 @@ import java.util.logging.Logger;
 
 import application.ServiceLocator;
 
+/**
+ * Die Translator Klasse kümmert sich um die Sprachtexte und liefert abhänig vom gesetzten Locale die benötigte Lang. Texte
+ * Abgesehen von dem Umbau auf die LangTexte Enum entspricht Sie dem im Unterricht behandeltem Beispiel.
+ * 
+ * @author Brad Richards
+ */
 public class Translator {
 
 	private ServiceLocator sl = ServiceLocator.getServiceLocator();
